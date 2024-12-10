@@ -1,0 +1,99 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.loading,
+.error {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 20px;
+}
+
+.featured-movie {
+  margin-bottom: 20px;
+}
+
+.featured-banner {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.2)),
+    url('https://via.placeholder.com/1200x500?text=Featured+Movie');
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.featured-banner:hover {
+  transform: scale(1.02);
+}
+
+.featured-poster {
+  width: 200px;
+  height: auto;
+  margin-right: 20px;
+  border-radius: 5px;
+}
+
+.featured-details {
+  flex: 1;
+}
+
+.featured-title {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.featured-year {
+  font-size: 1.2rem;
+  color: #ddd;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.movie-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+}
+
+.movie-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.movie-info {
+  padding: 10px;
+}
+
+.movie-info h3 {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.movie-info p {
+  color: #666;
+}

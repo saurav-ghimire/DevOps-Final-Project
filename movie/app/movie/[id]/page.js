@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { useParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
@@ -36,27 +36,32 @@ export default function MovieDetail() {
     }
   }, [id]);
 
-  if (isLoading) return (
-    <div className="flex justify-center items-center h-screen text-2xl">
-      Loading movie details...
-    </div>
-  );
+  if (isLoading)
+    return (
+      <div className="flex justify-center items-center h-screen text-2xl font-medium text-gray-800">
+        Loading movie details...
+      </div>
+    );
 
-  if (error) return (
-    <div className="text-red-500 text-center mt-8">
-      Error: {error}
-    </div>
-  );
+  if (error)
+    return (
+      <div className="text-red-500 text-center mt-8 text-lg">
+        Error: {error}
+      </div>
+    );
 
-  if (!movie) return (
-    <div className="text-center mt-8">No movie found</div>
-  );
+  if (!movie)
+    return (
+      <div className="text-center mt-8 text-lg text-gray-600">
+        No movie found
+      </div>
+    );
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto px-4 py-8">
       <Link
         href="/"
-        className="mb-4 inline-block text-blue-600 hover:underline"
+        className="mb-4 inline-block text-blue-600 hover:underline text-lg"
       >
         ← Back to Movies
       </Link>
@@ -65,15 +70,15 @@ export default function MovieDetail() {
         <img
           src={movie.Poster || 'https://via.placeholder.com/300x450?text=No+Image'}
           alt={movie.Title}
-          className="w-full md:w-64 h-auto object-cover rounded-lg"
+          className="w-full md:w-72 h-auto object-cover rounded-lg shadow-lg"
           onError={(e) => {
             e.target.src = 'https://via.placeholder.com/300x450?text=No+Image';
           }}
         />
 
-        <div>
-          <h1 className="text-3xl font-bold mb-4">{movie.Title}</h1>
-          <div className="space-y-2">
+        <div className="flex-1">
+          <h1 className="text-4xl font-bold mb-6 text-gray-800">{movie.Title}</h1>
+          <div className="space-y-4 text-gray-700">
             <p><strong>Year:</strong> {movie.Year}</p>
             <p><strong>Rated:</strong> {movie.Rated}</p>
             <p><strong>Released:</strong> {movie.Released}</p>
@@ -81,16 +86,24 @@ export default function MovieDetail() {
             <p><strong>Director:</strong> {movie.Director}</p>
             <p><strong>Actors:</strong> {movie.Actors}</p>
             <p className="mt-4"><strong>Plot:</strong> {movie.Plot}</p>
-
-            <div className="mt-4">
-              <strong>Ratings:</strong>
-              {movie.Ratings.map((rating, index) => (
-                <p key={index} className="text-sm">
-                  {rating.Source}: {rating.Value}
-                </p>
-              ))}
-            </div>
           </div>
+
+          {movie.Ratings && movie.Ratings.length > 0 && (
+            <div className="mt-6">
+              <h2 className="text-xl font-semibold mb-2">Ratings:</h2>
+              <ul className="space-y-2">
+                {movie.Ratings.map((rating, index) => (
+                  <li
+                    key={index}
+                    className="flex items-center justify-between p-2 bg-gray-100 rounded-md shadow-sm"
+                  >
+                    <span className="font-medium">{rating.Source}:</span>
+                    <span className="text-gray-600">{rating.Value}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     </div>
